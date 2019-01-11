@@ -33,12 +33,8 @@ class TasksController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    //新しいタスクを保存する
     public function store(Request $request)
     {
         $task = new Task;
@@ -48,12 +44,7 @@ class TasksController extends Controller
         return redirect('/');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     //タスクの詳細を確認
     public function show($id)
     {
         $task = Task::find($id);
@@ -65,12 +56,7 @@ class TasksController extends Controller
             ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   //タスクの編集
     public function edit($id)
     {
         $task = Task::find($id);
@@ -81,13 +67,7 @@ class TasksController extends Controller
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //タスクの更新
     public function update(Request $request, $id)
     {
         
@@ -99,12 +79,7 @@ class TasksController extends Controller
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //タスクの削除
     public function destroy($id)
     {
         //
