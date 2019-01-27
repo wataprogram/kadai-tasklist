@@ -19,11 +19,13 @@
                     {!! Form::label('password', 'パスワード') !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
-
-                {!! Form::submit('ログイン', ['class' => 'btn btn-primary btn-block']) !!}
+                
+                <div class="form-group">
+                    {!! Form::submit('ログイン', ['class' => 'btn btn-primary btn-block']) !!}
+                </div>
             {!! Form::close() !!}
 
-            <p class="mt-3"><span class="btn btn-success">{!! link_to_route('signup.get', '新規ユーザー登録はこちら',null , ['class' => 'text-light']) !!}</span> </p>
+            <p class="mt-3"><span class="btn btn-success">{!! link_to_route('signup.get', '新規ユーザー登録はこちら',null , ['class' => 'text-light']) !!}</span></p>
         </div>
     </div>
     
