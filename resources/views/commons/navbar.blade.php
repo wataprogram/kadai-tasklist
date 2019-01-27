@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="nav-bar"> 
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 @if (Auth::check())
                     <li class="nav-item"></li>
                 @else
