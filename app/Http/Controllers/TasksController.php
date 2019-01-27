@@ -11,13 +11,29 @@ class TasksController extends Controller
     //タスクを一覧表示
     public function index()
     {
-        //
-        $name = "wataru";
-        $tasks = Task::all();
-
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+        //ログイン状況の確認
+        
+        $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+            
+            
+        return view('tasks.index', $data);}
+        
+        
+        else{
+            
+            return redirect('/');
+            
+        }
+   
+        
     }
 
 
@@ -25,12 +41,20 @@ class TasksController extends Controller
     public function create()
     {
         
-        $task = new Task;
+        //ログイン状況の確認
+        if(\Auth::check()){
+            
+         $task = new Task;
         
          return view('tasks.create', [
             'task' => $task,
+          
         ]);
-        
+        }else{
+            
+            return redirect('tasks');
+            
+        }
         
     }
 
@@ -48,12 +72,13 @@ class TasksController extends Controller
         $task = new Task;
         $task->status = $request->status;
         $task->content = $request->content;
+        $task->user_id = \Auth::id();
         $task->save();
         
-        return redirect('/');
+        return redirect('tasks');
     }
 
-     //タスクの詳細を確認
+    //タスクの詳細を確認
     public function show($id)
     {
         $task = Task::find($id);
@@ -85,7 +110,7 @@ class TasksController extends Controller
         $task->content = $request->content;
         $task->save();
         
-        return redirect('/');
+        return redirect('tasks');
         
     }
 
@@ -96,7 +121,7 @@ class TasksController extends Controller
         $task = Task::find($id);
         $task->delete();
         
-        return redirect('/');
+        return redirect('tasks');
         
         
     }
